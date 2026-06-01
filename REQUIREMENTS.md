@@ -1,7 +1,7 @@
-# Phtevens FC — User Requirements
+# Phtevens — User Requirements
 
 ## Overview
-A web application for the Phtevens football betting club (7 members) to track weekly bets, results, and standings.
+A web application for Phtevens (7 members) to track weekly bets, results, and standings.
 
 ## Members
 - Marcus
