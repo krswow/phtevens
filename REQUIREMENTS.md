@@ -66,16 +66,6 @@ A member can edit their own betting coupon after submission. Only an administrat
 
 ---
 
-## Planned Features (Backlog)
-
-| ID | Feature | Priority |
-|----|---------|----------|
-| F-01 | Member profile pages | Medium |
-| F-02 | Bet history chart per member | Medium |
-| F-03 | Weekly summary / best performer highlight | Medium |
-
----
-
 ## Process
 
 All new features must follow this workflow:
