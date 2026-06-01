@@ -7,7 +7,7 @@ export default defineConfig({
     headless: true,
   },
   webServer: {
-    command: 'npx serve . -l 3000',
+    command: 'node server/index.js',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
   },
