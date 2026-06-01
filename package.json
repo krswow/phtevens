@@ -1,0 +1,23 @@
+{
+  "name": "phtevens",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krswow/phtevens.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krswow/phtevens/issues"
+  },
+  "homepage": "https://github.com/krswow/phtevens#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.60.0"
+  }
+}
