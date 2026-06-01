@@ -17,9 +17,10 @@ A web application for Phtevens (7 members) to track weekly bets, results, and st
 ## Core Requirements
 
 ### UR-01 — Weekly Bets
-Members can log a bet for a football match each week, including:
-- The match (e.g. Arsenal vs Chelsea)
-- Their prediction (e.g. Arsenal win)
+Each week, members can log one or more bets on any sport. Each bet must include:
+- The match or event (e.g. Arsenal vs Chelsea, Djokovic vs Alcaraz)
+- Their prediction (e.g. Arsenal win, Djokovic to win)
+- Total odds must exceed 1.75
 - The result (win / loss / pending)
 
 ### UR-02 — Leaderboard
