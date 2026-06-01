@@ -1,9 +1,12 @@
-const MEMBERS = ['Marcus', 'Leila', 'Tobias', 'Priya', 'Finn', 'Sofia', 'Dante'];
+const API = '';
 
-const STORAGE_KEY = 'phtevens_bets';
+function getToken() { return localStorage.getItem('token'); }
+function getUser() { return JSON.parse(localStorage.getItem('user') || 'null'); }
 
-let currentWeek = getWeekNumber(new Date());
-let currentYear = new Date().getFullYear();
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 
 function getWeekNumber(date) {
   const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
@@ -13,128 +16,126 @@ function getWeekNumber(date) {
   return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
 }
 
-function weekKey(year, week) {
-  return `${year}-W${String(week).padStart(2, '0')}`;
-}
+let currentWeek = getWeekNumber(new Date());
+let currentYear = new Date().getFullYear();
 
-function loadBets() {
-  return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-}
+// --- Auth ---
 
-function saveBets(bets) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(bets));
-}
+document.getElementById('login-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const username = document.getElementById('username-input').value.trim();
+  const password = document.getElementById('password-input').value;
+  const errorEl = document.getElementById('login-error');
+  errorEl.classList.add('hidden');
 
-function getBetsForWeek(year, week) {
-  const bets = loadBets();
-  return bets[weekKey(year, week)] || [];
-}
-
-function addBet(year, week, bet) {
-  const bets = loadBets();
-  const key = weekKey(year, week);
-  if (!bets[key]) bets[key] = [];
-  bets[key].push(bet);
-  saveBets(bets);
-}
-
-function buildLeaderboard() {
-  const bets = loadBets();
-  const stats = {};
-  MEMBERS.forEach(m => stats[m] = { wins: 0, losses: 0 });
-
-  Object.values(bets).flat().forEach(bet => {
-    if (!stats[bet.member]) return;
-    if (bet.result === 'win') stats[bet.member].wins++;
-    if (bet.result === 'loss') stats[bet.member].losses++;
+  const res = await fetch(`${API}/api/auth/login`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, password }),
   });
 
-  return MEMBERS
-    .map(m => ({ name: m, ...stats[m], points: stats[m].wins * 3 - stats[m].losses }))
-    .sort((a, b) => b.points - a.points || b.wins - a.wins);
-}
-
-function renderLeaderboard() {
-  const tbody = document.getElementById('leaderboard-body');
-  const board = buildLeaderboard();
-  tbody.innerHTML = board.map((m, i) => `
-    <tr class="${i < 3 ? 'rank-' + (i + 1) : ''}">
-      <td>${i + 1}</td>
-      <td>${m.name}</td>
-      <td>${m.wins}</td>
-      <td>${m.losses}</td>
-      <td>${m.points}</td>
-    </tr>
-  `).join('');
-}
-
-function renderBets() {
-  const tbody = document.getElementById('bets-body');
-  const label = document.getElementById('week-label');
-  const bets = getBetsForWeek(currentYear, currentWeek);
-
-  label.textContent = `${currentYear} — Week ${currentWeek}`;
-
-  if (bets.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="4" style="color:#8b949e;text-align:center;">No bets this week yet.</td></tr>`;
+  const data = await res.json();
+  if (!res.ok) {
+    errorEl.textContent = data.error || 'Login failed';
+    errorEl.classList.remove('hidden');
     return;
   }
 
-  tbody.innerHTML = bets.map(b => `
-    <tr>
-      <td>${b.member}</td>
-      <td>${b.match}</td>
-      <td>${b.prediction}</td>
-      <td><span class="badge ${b.result}">${b.result}</span></td>
+  localStorage.setItem('token', data.token);
+  localStorage.setItem('user', JSON.stringify(data.user));
+  initApp();
+});
+
+document.getElementById('logout-btn').addEventListener('click', () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('user');
+  showPage('login-page');
+});
+
+// --- App ---
+
+function initApp() {
+  const user = getUser();
+  if (!user) { showPage('login-page'); return; }
+  document.getElementById('logged-in-user').textContent = user.username;
+  showPage('app-page');
+  renderWeekLabel();
+  loadStandings();
+  loadCoupons();
+}
+
+function renderWeekLabel() {
+  document.getElementById('week-label').textContent = `${currentYear} — Week ${currentWeek}`;
+}
+
+async function loadStandings() {
+  const res = await fetch(`${API}/api/standings`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
+  });
+  if (!res.ok) return;
+  const standings = await res.json();
+  const tbody = document.getElementById('leaderboard-body');
+  if (!standings.length) {
+    tbody.innerHTML = `<tr><td colspan="5" class="empty-state">No data yet.</td></tr>`;
+    return;
+  }
+  tbody.innerHTML = standings.map((m, i) => `
+    <tr class="${i < 3 ? 'rank-' + (i + 1) : ''}">
+      <td>${i + 1}</td>
+      <td>${m.username}</td>
+      <td>${m.won}</td>
+      <td>${m.lost}</td>
+      <td>${m.winnings.toFixed(2)}</td>
     </tr>
   `).join('');
 }
 
-function populateMemberSelect() {
-  const select = document.getElementById('member-select');
-  MEMBERS.forEach(m => {
-    const opt = document.createElement('option');
-    opt.value = m;
-    opt.textContent = m;
-    select.appendChild(opt);
+async function loadCoupons() {
+  const res = await fetch(`${API}/api/coupons?week=${currentWeek}&year=${currentYear}`, {
+    headers: { Authorization: `Bearer ${getToken()}` },
   });
-}
-
-function render() {
-  renderLeaderboard();
-  renderBets();
+  if (!res.ok) return;
+  const coupons = await res.json();
+  const container = document.getElementById('coupons-list');
+  if (!coupons.length) {
+    container.innerHTML = `<p class="empty-state">No coupons this week.</p>`;
+    return;
+  }
+  container.innerHTML = coupons.map(c => `
+    <div class="coupon-card">
+      <div class="coupon-header">
+        <span class="coupon-member">${c.username}</span>
+        <span class="badge ${c.result}">${c.result}</span>
+      </div>
+      <div class="coupon-meta">
+        Stake: 25 DKK &nbsp;|&nbsp; Total odds: ${c.total_odds.toFixed(2)} &nbsp;|&nbsp; Potential: ${c.potential_winnings.toFixed(2)} DKK
+      </div>
+      ${c.bets.map(b => `
+        <div class="bet-row">
+          <span>${b.event} — ${b.prediction}</span>
+          <span>${b.odds}</span>
+        </div>
+      `).join('')}
+    </div>
+  `).join('');
 }
 
 document.getElementById('prev-week').addEventListener('click', () => {
   currentWeek--;
   if (currentWeek < 1) { currentWeek = 52; currentYear--; }
-  render();
+  renderWeekLabel();
+  loadCoupons();
 });
 
 document.getElementById('next-week').addEventListener('click', () => {
   currentWeek++;
   if (currentWeek > 52) { currentWeek = 1; currentYear++; }
-  render();
+  renderWeekLabel();
+  loadCoupons();
 });
 
-document.getElementById('bet-form').addEventListener('submit', e => {
-  e.preventDefault();
-  const member = document.getElementById('member-select').value;
-  const match = document.getElementById('match-input').value.trim();
-  const prediction = document.getElementById('prediction-input').value.trim();
-  const result = document.getElementById('result-select').value;
-
-  if (!member || !match || !prediction) return;
-
-  addBet(currentYear, currentWeek, { member, match, prediction, result });
-
-  document.getElementById('match-input').value = '';
-  document.getElementById('prediction-input').value = '';
-  document.getElementById('result-select').value = 'pending';
-  document.getElementById('member-select').value = '';
-
-  render();
-});
-
-populateMemberSelect();
-render();
+// --- Boot ---
+if (getToken()) {
+  initApp();
+}
+// login-page is active by default in HTML, no else needed
