@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Phtevens FC Betting Club</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Phtevens FC</h1>
+    <p class="subtitle">Football Betting Club</p>
+  </header>
+
+  <main>
+    <!-- Leaderboard -->
+    <section id="leaderboard">
+      <h2>Leaderboard</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Member</th>
+            <th>Wins</th>
+            <th>Losses</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboard-body"></tbody>
+      </table>
+    </section>
+
+    <!-- Weekly Bets -->
+    <section id="weekly-bets">
+      <h2>This Week's Bets</h2>
+      <div class="week-controls">
+        <button id="prev-week">&#8592; Prev</button>
+        <span id="week-label"></span>
+        <button id="next-week">Next &#8594;</button>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Member</th>
+            <th>Match</th>
+            <th>Prediction</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody id="bets-body"></tbody>
+      </table>
+    </section>
+
+    <!-- Add Bet -->
+    <section id="add-bet">
+      <h2>Add Bet</h2>
+      <form id="bet-form">
+        <select id="member-select">
+          <option value="">Select member...</option>
+        </select>
+        <input type="text" id="match-input" placeholder="e.g. Arsenal vs Chelsea" required />
+        <input type="text" id="prediction-input" placeholder="e.g. Arsenal win" required />
+        <select id="result-select">
+          <option value="pending">Pending</option>
+          <option value="win">Win</option>
+          <option value="loss">Loss</option>
+        </select>
+        <button type="submit">Add Bet</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

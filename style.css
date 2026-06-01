@@ -1,0 +1,159 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #0d1117;
+  color: #e6edf3;
+  min-height: 100vh;
+}
+
+header {
+  background: #161b22;
+  border-bottom: 2px solid #238636;
+  padding: 24px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.4rem;
+  color: #58a6ff;
+  letter-spacing: 2px;
+}
+
+header .subtitle {
+  color: #8b949e;
+  margin-top: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+main {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+section {
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+h2 {
+  color: #58a6ff;
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #0d1117;
+  color: #8b949e;
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+td {
+  padding: 10px 12px;
+  border-top: 1px solid #21262d;
+  font-size: 0.95rem;
+}
+
+tr:hover td {
+  background: #1c2128;
+}
+
+.rank-1 td:first-child { color: gold; font-weight: bold; }
+.rank-2 td:first-child { color: silver; font-weight: bold; }
+.rank-3 td:first-child { color: #cd7f32; font-weight: bold; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.badge.win  { background: #1a4731; color: #3fb950; }
+.badge.loss { background: #3d1c1c; color: #f85149; }
+.badge.pending { background: #2d2d00; color: #e3b341; }
+
+.week-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.week-controls button {
+  background: #21262d;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.week-controls button:hover { background: #30363d; }
+
+#week-label {
+  font-weight: bold;
+  color: #8b949e;
+  flex: 1;
+  text-align: center;
+}
+
+#bet-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#bet-form select,
+#bet-form input {
+  flex: 1;
+  min-width: 160px;
+  background: #0d1117;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+#bet-form button {
+  background: #238636;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+#bet-form button:hover { background: #2ea043; }
+
+@media (max-width: 600px) {
+  header h1 { font-size: 1.8rem; }
+  #bet-form select, #bet-form input { min-width: 100%; }
+}
