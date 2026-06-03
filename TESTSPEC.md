@@ -69,8 +69,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| FR-09-TC-01 | FR-09 | Log in as a member. View the weekly overview. | Only the member's own coupons are visible. **Not yet implemented.** |
-| FR-09-TC-02 | FR-09 | Log in as a member. Attempt to access another member's coupon directly via URL. | Access is denied. **Not yet implemented.** |
+| FR-09-TC-01 | FR-09 | Log in as a member. View the weekly overview. | All members' coupons are visible. **Not yet implemented.** |
+| FR-09-TC-02 | FR-09 | Log in as a member. Attempt to submit a coupon on behalf of another member. | Submission is rejected. **Not yet implemented.** |
 
 ### FR-10 — Administrator Permissions
 
