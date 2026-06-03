@@ -3,6 +3,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { mkdirSync } from 'fs';
 import db from './db.js';
+import authRoutes from './routes/auth.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -12,6 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use('/api/auth', authRoutes);
 app.use(express.static(join(__dirname, '..')));
 
 app.get('/api/health', (req, res) => {
