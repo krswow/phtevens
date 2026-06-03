@@ -46,7 +46,7 @@ It must be possible to view all submitted betting coupons for any past or curren
 Access to the application requires login with a username and password.
 
 ### FR-09 — Member Permissions
-A member can only view and submit their own betting coupons.
+A member can view all betting coupons but can only submit their own.
 
 ### FR-10 — Administrator Permissions
 Only an administrator can register the result of a betting coupon.
