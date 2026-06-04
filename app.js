@@ -120,6 +120,99 @@ async function loadCoupons() {
   `).join('');
 }
 
+// --- Submit Coupon ---
+
+function addBetRow() {
+  const container = document.getElementById('bets-container');
+  const row = document.createElement('div');
+  row.className = 'bet-input-row';
+  row.innerHTML = `
+    <input type="text" class="bet-event" placeholder="Event (e.g. Arsenal vs Chelsea)" />
+    <input type="text" class="bet-prediction" placeholder="Prediction (e.g. Arsenal win)" />
+    <input type="number" class="bet-odds" placeholder="Odds" step="0.01" min="1.01" />
+    <button class="remove-bet-btn" aria-label="Remove bet">✕</button>
+  `;
+  container.appendChild(row);
+  updateRemoveButtons();
+}
+
+function updateRemoveButtons() {
+  const rows = document.querySelectorAll('.bet-input-row');
+  rows.forEach(row => {
+    const btn = row.querySelector('.remove-bet-btn');
+    btn.disabled = rows.length === 1;
+    btn.style.opacity = rows.length === 1 ? '0.3' : '1';
+  });
+}
+
+document.getElementById('bets-container').addEventListener('click', e => {
+  if (e.target.classList.contains('remove-bet-btn')) {
+    const rows = document.querySelectorAll('.bet-input-row');
+    if (rows.length > 1) {
+      e.target.closest('.bet-input-row').remove();
+      updateRemoveButtons();
+    }
+  }
+});
+
+document.getElementById('add-bet-btn').addEventListener('click', addBetRow);
+
+document.getElementById('submit-coupon-btn').addEventListener('click', async () => {
+  const errorEl = document.getElementById('submit-coupon-error');
+  const successEl = document.getElementById('submit-coupon-success');
+  errorEl.classList.add('hidden');
+  successEl.classList.add('hidden');
+
+  const rows = document.querySelectorAll('.bet-input-row');
+  const bets = [];
+  for (const row of rows) {
+    const event = row.querySelector('.bet-event').value.trim();
+    const prediction = row.querySelector('.bet-prediction').value.trim();
+    const odds = parseFloat(row.querySelector('.bet-odds').value);
+    if (!event || !prediction || !odds) {
+      errorEl.textContent = 'All bet fields (event, prediction, odds) are required.';
+      errorEl.classList.remove('hidden');
+      return;
+    }
+    bets.push({ event, prediction, odds });
+  }
+
+  const now = new Date();
+  const res = await fetch(`${API}/api/coupons`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${getToken()}`,
+    },
+    body: JSON.stringify({ week: getWeekNumber(now), year: now.getFullYear(), bets }),
+  });
+
+  const data = await res.json();
+  if (!res.ok) {
+    errorEl.textContent = data.error || 'Submission failed.';
+    errorEl.classList.remove('hidden');
+    return;
+  }
+
+  successEl.textContent = 'Coupon submitted successfully!';
+  successEl.classList.remove('hidden');
+
+  document.querySelectorAll('.bet-input-row').forEach((row, i) => { if (i > 0) row.remove(); });
+  document.querySelector('.bet-event').value = '';
+  document.querySelector('.bet-prediction').value = '';
+  document.querySelector('.bet-odds').value = '';
+  updateRemoveButtons();
+
+  currentWeek = getWeekNumber(now);
+  currentYear = now.getFullYear();
+  renderWeekLabel();
+  loadCoupons();
+});
+
+updateRemoveButtons();
+
+// --- Week navigation ---
+
 document.getElementById('prev-week').addEventListener('click', () => {
   currentWeek--;
   if (currentWeek < 1) { currentWeek = 52; currentYear--; }
