@@ -94,8 +94,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| NFR-02-TC-01 | NFR-02 | Access the application outside normal business hours (e.g. midnight). | Application loads and is fully functional. **Not yet implemented.** |
-| NFR-02-TC-02 | NFR-02 | Access the application immediately after a new deployment is pushed. | Application remains available with no interruption. **Not yet implemented.** |
+| NFR-02-TC-01 | NFR-02 | Access the application outside normal business hours (e.g. midnight). | Application loads and is fully functional. |
+| NFR-02-TC-02 | NFR-02 | Access the application immediately after a new deployment is pushed. | Application remains available with no interruption. |
 
 ### NFR-03 — Data Integrity
 
