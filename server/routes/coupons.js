@@ -72,6 +72,40 @@ router.post('/', requireAuth, (req, res) => {
   res.status(201).json({ id: coupon.lastInsertRowid });
 });
 
+// PUT /api/coupons/:id/bets — owner only, replace all bets
+router.put('/:id/bets', requireAuth, (req, res) => {
+  const coupon = db.prepare('SELECT * FROM coupons WHERE id = ?').get(req.params.id);
+  if (!coupon) return res.status(404).json({ error: 'Not found' });
+  if (coupon.user_id !== req.user.id) return res.status(403).json({ error: 'Forbidden' });
+
+  const { bets } = req.body;
+  if (!bets || bets.length === 0) {
+    return res.status(400).json({ error: 'A coupon must contain at least one bet' });
+  }
+  for (const bet of bets) {
+    if (!bet.event || !bet.prediction || !bet.odds) {
+      return res.status(400).json({ error: 'Each bet must have an event, prediction, and odds' });
+    }
+  }
+
+  const totalOdds = bets.reduce((acc, b) => acc * parseFloat(b.odds), 1);
+  if (totalOdds < 1.75) {
+    return res.status(400).json({ error: `Total odds ${totalOdds.toFixed(2)} is below minimum of 1.75` });
+  }
+
+  const potentialWinnings = coupon.stake * totalOdds;
+
+  db.prepare('DELETE FROM bets WHERE coupon_id = ?').run(coupon.id);
+  const insertBet = db.prepare('INSERT INTO bets (coupon_id, event, prediction, odds) VALUES (?, ?, ?, ?)');
+  for (const bet of bets) {
+    insertBet.run(coupon.id, bet.event, bet.prediction, parseFloat(bet.odds));
+  }
+  db.prepare(`UPDATE coupons SET total_odds = ?, potential_winnings = ?, updated_at = datetime('now') WHERE id = ?`)
+    .run(totalOdds, potentialWinnings, coupon.id);
+
+  res.json({ success: true });
+});
+
 // PATCH /api/coupons/:id/result — admin only
 router.patch('/:id/result', requireAdmin, (req, res) => {
   const { result } = req.body;
