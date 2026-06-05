@@ -34,8 +34,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| FR-04-TC-01 | FR-04 | Log in as administrator. Select a coupon where all bets are correct. Register result as won. | Coupon result is set to won. **Not yet implemented.** |
-| FR-04-TC-02 | FR-04 | Log in as a member. Attempt to register the result of a coupon. | The result registration function is not available. **Not yet implemented.** |
+| FR-04-TC-01 | FR-04 | Log in as administrator. Select a coupon where all bets are correct. Register result as won. | Coupon result is set to won. |
+| FR-04-TC-02 | FR-04 | Log in as a member. Attempt to register the result of a coupon. | The result registration function is not available. |
 
 ### FR-05 — Winnings
 
