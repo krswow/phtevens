@@ -87,8 +87,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| NFR-01-TC-01 | NFR-01 | Open the application on a mobile device or browser at 375px width. Navigate all pages. | All content and functions are accessible and readable. **Not yet implemented.** |
-| NFR-01-TC-02 | NFR-01 | Open the application on desktop. Resize the browser window to 375px width. | No content is cut off or inaccessible. **Not yet implemented.** |
+| NFR-01-TC-01 | NFR-01 | Open the application on a mobile device or browser at 375px width. Navigate all pages. | All content and functions are accessible and readable. |
+| NFR-01-TC-02 | NFR-01 | Open the application on desktop. Resize the browser window to 375px width. | No content is cut off or inaccessible. |
 
 ### NFR-02 — Availability
 

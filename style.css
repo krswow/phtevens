@@ -299,4 +299,14 @@ tr:hover td { background: #1c2128; }
 @media (max-width: 600px) {
   header h1 { font-size: 1.4rem; }
   .coupon-header { flex-direction: column; align-items: flex-start; gap: 6px; }
+
+  table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  .bet-input-row { flex-direction: column; }
+  .bet-input-row input.bet-odds { max-width: 100%; flex: 1; }
+
+  .submit-coupon-actions { flex-direction: column; }
+  #add-bet-btn, #submit-coupon-btn { width: 100%; }
+
+  .week-controls { flex-wrap: wrap; justify-content: center; }
 }
