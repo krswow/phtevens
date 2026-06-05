@@ -27,8 +27,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| FR-03-TC-01 | FR-03 | Log in as a member. Submit a coupon. View the coupon details. | Coupon displays a stake of 25 DKK. **Not yet implemented.** |
-| FR-03-TC-02 | FR-03 | Log in as a member. Navigate to submit coupon. Attempt to change the stake amount. | The stake field is not editable. **Not yet implemented.** |
+| FR-03-TC-01 | FR-03 | Log in as a member. Submit a coupon. View the coupon details. | Coupon displays a stake of 25 DKK. |
+| FR-03-TC-02 | FR-03 | Log in as a member. Navigate to submit coupon. Attempt to change the stake amount. | The stake field is not editable. |
 
 ### FR-04 — Coupon Result
 
