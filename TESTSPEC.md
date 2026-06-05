@@ -20,8 +20,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| FR-02-TC-01 | FR-02 | Log in as a member. Submit a coupon with two bets at odds 2.0 and 1.5 (total: 3.0). | Coupon is accepted and saved. **Not yet implemented.** |
-| FR-02-TC-02 | FR-02 | Log in as a member. Submit a coupon with two bets at odds 1.2 and 1.3 (total: 1.56). | Submission is rejected with a message stating minimum odds of 1.75 are not met. **Not yet implemented.** |
+| FR-02-TC-01 | FR-02 | Log in as a member. Submit a coupon with two bets at odds 2.0 and 1.5 (total: 3.0). | Coupon is accepted and saved. |
+| FR-02-TC-02 | FR-02 | Log in as a member. Submit a coupon with two bets at odds 1.2 and 1.3 (total: 1.56). | Submission is rejected with a message stating minimum odds of 1.75 are not met. |
 
 ### FR-03 — Stake Amount
 
