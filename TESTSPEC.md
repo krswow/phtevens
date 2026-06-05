@@ -48,8 +48,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| FR-06-TC-01 | FR-06 | Register 2 won coupons for one member. View standings. | Member shows 2 wins and correct accumulated winnings, ranked above members with lower winnings. **Not yet implemented.** |
-| FR-06-TC-02 | FR-06 | View standings with one member having no won coupons and another with won coupons. | Member with no winnings is ranked below the member with winnings. **Not yet implemented.** |
+| FR-06-TC-01 | FR-06 | Register 2 won coupons for one member. View standings. | Member shows 2 wins and correct accumulated winnings, ranked above members with lower winnings. |
+| FR-06-TC-02 | FR-06 | View standings with one member having no won coupons and another with won coupons. | Member with no winnings is ranked below the member with winnings. |
 
 ### FR-07 — Weekly Overview
 
