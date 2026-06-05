@@ -55,8 +55,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| FR-07-TC-01 | FR-07 | Navigate to a past week where coupons were submitted. | All coupons submitted for that week are displayed. **Not yet implemented.** |
-| FR-07-TC-02 | FR-07 | Navigate to a week where no coupons were submitted. | Overview shows no coupons for that week. **Not yet implemented.** |
+| FR-07-TC-01 | FR-07 | Navigate to a past week where coupons were submitted. | All coupons submitted for that week are displayed. |
+| FR-07-TC-02 | FR-07 | Navigate to a week where no coupons were submitted. | Overview shows no coupons for that week. |
 
 ### FR-08 — User Login
 
