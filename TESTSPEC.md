@@ -13,8 +13,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| FR-01-TC-01 | FR-01 | Log in as a member. Navigate to submit coupon. Add 2 bets from different sports. Submit. | Coupon is saved and visible to the member. **Not yet implemented.** |
-| FR-01-TC-02 | FR-01 | Log in as a member. Navigate to submit coupon. Submit without adding any bets. | Submission is rejected with an error message. **Not yet implemented.** |
+| FR-01-TC-01 | FR-01 | Log in as a member. Navigate to submit coupon. Add 2 bets from different sports. Submit. | Coupon is saved and visible to the member. |
+| FR-01-TC-02 | FR-01 | Log in as a member. Navigate to submit coupon. Submit without adding any bets. | Submission is rejected with an error message. |
 
 ### FR-02 — Minimum Odds
 

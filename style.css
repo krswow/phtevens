@@ -227,6 +227,75 @@ tr:hover td { background: #1c2128; }
   padding: 24px;
 }
 
+.success {
+  color: #3fb950;
+  font-size: 0.875rem;
+  margin-top: 10px;
+}
+
+.bet-input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+  flex-wrap: wrap;
+}
+
+.bet-input-row input {
+  background: #0d1117;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  flex: 1;
+  min-width: 100px;
+}
+
+.bet-input-row input.bet-odds { max-width: 90px; flex: none; }
+
+.remove-bet-btn {
+  background: transparent;
+  color: #8b949e;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.remove-bet-btn:hover { color: #f85149; border-color: #f85149; }
+
+.submit-coupon-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+#add-bet-btn {
+  background: #21262d;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+#add-bet-btn:hover { background: #30363d; }
+
+#submit-coupon-btn {
+  background: #238636;
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+#submit-coupon-btn:hover { background: #2ea043; }
+
 @media (max-width: 600px) {
   header h1 { font-size: 1.4rem; }
   .coupon-header { flex-direction: column; align-items: flex-start; gap: 6px; }

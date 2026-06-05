@@ -22,7 +22,7 @@
   </div>
 
   <!-- Main App -->
-  <div id="app-page" class="page hidden">
+  <div id="app-page" class="page">
     <header>
       <h1>Phtevens</h1>
       <div class="header-right">
@@ -47,6 +47,25 @@
           </thead>
           <tbody id="leaderboard-body"></tbody>
         </table>
+      </section>
+
+      <!-- Submit Coupon -->
+      <section id="submit-coupon">
+        <h2>Submit Coupon</h2>
+        <div id="bets-container">
+          <div class="bet-input-row">
+            <input type="text" class="bet-event" placeholder="Event (e.g. Arsenal vs Chelsea)" />
+            <input type="text" class="bet-prediction" placeholder="Prediction (e.g. Arsenal win)" />
+            <input type="number" class="bet-odds" placeholder="Odds" step="0.01" min="1.01" />
+            <button class="remove-bet-btn" aria-label="Remove bet">✕</button>
+          </div>
+        </div>
+        <div class="submit-coupon-actions">
+          <button id="add-bet-btn">+ Add Bet</button>
+          <button id="submit-coupon-btn">Submit Coupon</button>
+        </div>
+        <p id="submit-coupon-error" class="error hidden"></p>
+        <p id="submit-coupon-success" class="success hidden"></p>
       </section>
 
       <!-- Weekly Bets -->
