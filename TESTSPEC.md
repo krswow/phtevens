@@ -101,5 +101,5 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| NFR-03-TC-01 | NFR-03 | Log in as a member. Edit the odds on a submitted coupon. Save. | Updated coupon is saved correctly. **Not yet implemented.** |
-| NFR-03-TC-02 | NFR-03 | Log in as a member. Attempt to set the result of their own coupon to won. | Action is not permitted. **Not yet implemented.** |
+| NFR-03-TC-01 | NFR-03 | Log in as a member. Edit the odds on a submitted coupon. Save. | Updated coupon is saved correctly. |
+| NFR-03-TC-02 | NFR-03 | Log in as a member. Attempt to set the result of their own coupon to won. | Action is not permitted. |
