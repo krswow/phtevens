@@ -41,8 +41,8 @@ Test cases marked with **"Not yet implemented"** in the Expected Result indicate
 
 | ID | Requirement | Steps | Expected Result |
 |----|------------|-------|----------------|
-| FR-05-TC-01 | FR-05 | Log in as a member. Submit a coupon with total odds of 3.0. View the coupon. | Potential winnings displayed as 75.00 DKK. **Not yet implemented.** |
-| FR-05-TC-02 | FR-05 | Log in as a member. Submit a coupon with total odds of 1.75. View the coupon. | Potential winnings displayed as 43.75 DKK, not 25.00 DKK. **Not yet implemented.** |
+| FR-05-TC-01 | FR-05 | Log in as a member. Submit a coupon with total odds of 3.0. View the coupon. | Potential winnings displayed as 75.00 DKK. |
+| FR-05-TC-02 | FR-05 | Log in as a member. Submit a coupon with total odds of 1.75. View the coupon. | Potential winnings displayed as 43.75 DKK, not 25.00 DKK. |
 
 ### FR-06 — Standings
 
